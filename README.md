@@ -26,10 +26,10 @@ Proyek ini dirancang untuk pembuatan aplikasi **Single Page Application (SPA)** 
 - ✅ Layout modular dan reusable
 - ✅ SPA full via InertiaJS (tanpa perlu REST API)
 - ✅ Pembuatan datatable custom:
-  - Pagination
-  - Searching
-  - Sorting
-  - Fitur lanjutan lainnya
+    - Pagination
+    - Searching
+    - Sorting
+    - Fitur lanjutan lainnya
 
 ---
 
@@ -58,3 +58,4 @@ php artisan migrate
 # 7. Jalankan dev server
 npm run dev
 php artisan serve
+```
