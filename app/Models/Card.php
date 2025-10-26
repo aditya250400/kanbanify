@@ -27,4 +27,19 @@ class Card extends Model
     {
         return $this->belongsTo(User::class);
     }
+
+    public function attachments()
+    {
+        return $this->hasMany(Attachment::class);
+    }
+
+    public function tasks()
+    {
+        return $this->hasMany(Task::class);
+    }
+
+    public function members()
+    {
+        return $this->morphMany(Member::class, 'memberable');
+    }
 }
