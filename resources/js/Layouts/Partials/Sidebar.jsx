@@ -2,7 +2,7 @@ import { Avatar, AvatarFallback } from '@/Components/ui/avatar';
 import { Link } from '@inertiajs/react';
 import { PiHouse, PiLockKeyOpen, PiPlus, PiSquaresFour, PiUsers } from 'react-icons/pi';
 
-export default function Sidebar() {
+export default function Sidebar({ auth }) {
     return (
         <>
             <nav className="flex flex-1 flex-col">
@@ -81,7 +81,7 @@ export default function Sidebar() {
                             <Avatar>
                                 <AvatarFallback>X</AvatarFallback>
                             </Avatar>
-                            <span>Luffy</span>
+                            <span>{auth.name}</span>
                         </Link>
                     </li>
                 </ul>
