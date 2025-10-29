@@ -29,7 +29,7 @@ export default function Login({ status, canResetPassword }) {
 
     return (
         <GuestLayout title="Login">
-            <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
+            <div className="flex h-[100vh] flex-1 flex-col items-center justify-center px-6 py-12 lg:px-8">
                 <div className="sm:mx-auto sm:w-full sm:max-w-sm">
                     <Card>
                         <CardHeader>
@@ -60,13 +60,13 @@ export default function Login({ status, canResetPassword }) {
                                     </div>
 
                                     <div>
-                                        <div className="flex items-center justify-between">
+                                        <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between">
                                             <InputLabel htmlFor="password" value="Password" tabIndex={-1} />
                                             {canResetPassword && (
                                                 <div className="text-sm">
                                                     <Link
                                                         href="#"
-                                                        className="font-semibold text-blue-500 hover:text-blue-600"
+                                                        className="text-xs font-semibold text-blue-500 hover:text-blue-600"
                                                     >
                                                         Forgot your password?
                                                     </Link>
