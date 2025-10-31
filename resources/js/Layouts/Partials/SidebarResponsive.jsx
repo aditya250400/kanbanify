@@ -1,7 +1,8 @@
+import { cn } from '@/lib/utils';
 import { Link } from '@inertiajs/react';
 import { PiHouse, PiLockKeyOpen, PiPlus, PiSquaresFour, PiUsers } from 'react-icons/pi';
 
-export default function SidebarResponsive({ auth }) {
+export default function SidebarResponsive({ auth, url }) {
     return (
         <>
             <div className="flex grow flex-col gap-y-5 overflow-y-auto bg-white px-6 pb-2 dark:bg-gray-900">
@@ -16,37 +17,77 @@ export default function SidebarResponsive({ auth }) {
                             <ul role="list" className="-mx-2 space-y-1">
                                 <li>
                                     <Link
-                                        className="group flex gap-x-3 rounded-md p-3 text-sm font-semibold leading-relaxed text-foreground hover:bg-gray-100"
-                                        href="#"
+                                        className={cn(
+                                            url.startsWith('/dashboard')
+                                                ? 'bg-blue-500 text-white'
+                                                : 'text-foreground hover:bg-gray-100',
+                                            'group flex gap-x-3 rounded-md p-3 text-sm font-semibold leading-relaxed',
+                                        )}
+                                        href={route('dashboard')}
                                     >
-                                        <PiHouse className="h-6 w-6 shrink-0 text-foreground" />
+                                        <PiHouse
+                                            className={cn(
+                                                url.startsWith('/dashboard') ? 'text-white' : 'text-foreground',
+                                                'h-6 w-6 shrink-0',
+                                            )}
+                                        />
                                         Dashboard
                                     </Link>
                                 </li>
                                 <li>
                                     <Link
-                                        className="group flex gap-x-3 rounded-md p-3 text-sm font-semibold leading-relaxed text-foreground hover:bg-gray-100"
+                                        className={cn(
+                                            url.startsWith('/users')
+                                                ? 'bg-blue-500 text-white'
+                                                : 'text-foreground hover:bg-gray-100',
+                                            'group flex gap-x-3 rounded-md p-3 text-sm font-semibold leading-relaxed',
+                                        )}
                                         href="#"
                                     >
-                                        <PiUsers className="h-6 w-6 shrink-0 text-foreground" />
+                                        <PiUsers
+                                            className={cn(
+                                                url.startsWith('/users') ? 'text-white' : 'text-foreground',
+                                                'h-6 w-6 shrink-0',
+                                            )}
+                                        />
                                         Peoples
                                     </Link>
                                 </li>
                                 <li>
                                     <Link
-                                        className="group flex gap-x-3 rounded-md p-3 text-sm font-semibold leading-relaxed text-foreground hover:bg-gray-100"
+                                        className={cn(
+                                            url.startsWith('/my-tasks')
+                                                ? 'bg-blue-500 text-white'
+                                                : 'text-foreground hover:bg-gray-100',
+                                            'group flex gap-x-3 rounded-md p-3 text-sm font-semibold leading-relaxed',
+                                        )}
                                         href="#"
                                     >
-                                        <PiSquaresFour className="h-6 w-6 shrink-0 text-foreground" />
+                                        <PiSquaresFour
+                                            className={cn(
+                                                url.startsWith('/my-tasks') ? 'text-white' : 'text-foreground',
+                                                'h-6 w-6 shrink-0',
+                                            )}
+                                        />
                                         My Tasks
                                     </Link>
                                 </li>
                                 <li>
                                     <Link
-                                        className="group flex gap-x-3 rounded-md p-3 text-sm font-semibold leading-relaxed text-foreground hover:bg-gray-100"
+                                        className={cn(
+                                            url.startsWith('/logout')
+                                                ? 'bg-blue-500 text-white'
+                                                : 'text-foreground hover:bg-gray-100',
+                                            'group flex gap-x-3 rounded-md p-3 text-sm font-semibold leading-relaxed',
+                                        )}
                                         href="#"
                                     >
-                                        <PiLockKeyOpen className="h-6 w-6 shrink-0 text-foreground" />
+                                        <PiLockKeyOpen
+                                            className={cn(
+                                                url.startsWith('/logout') ? 'text-white' : 'text-foreground',
+                                                'h-6 w-6 shrink-0',
+                                            )}
+                                        />
                                         Logout
                                     </Link>
                                 </li>
