@@ -78,9 +78,11 @@ export default function SidebarResponsive({ auth, url }) {
                                             url.startsWith('/logout')
                                                 ? 'bg-blue-500 text-white'
                                                 : 'text-foreground hover:bg-gray-100',
-                                            'group flex gap-x-3 rounded-md p-3 text-sm font-semibold leading-relaxed',
+                                            'group flex w-full gap-x-3 rounded-md p-3 text-sm font-semibold leading-relaxed',
                                         )}
-                                        href="#"
+                                        href={route('logout')}
+                                        method="POST"
+                                        as="button"
                                     >
                                         <PiLockKeyOpen
                                             className={cn(
