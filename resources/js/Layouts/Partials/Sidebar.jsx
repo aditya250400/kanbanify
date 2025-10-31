@@ -79,7 +79,7 @@ export default function Sidebar({ auth }) {
                             href={'#'}
                         >
                             <Avatar>
-                                <AvatarFallback>X</AvatarFallback>
+                                <AvatarFallback>{auth.name.slice(0, 1)}</AvatarFallback>
                             </Avatar>
                             <span>{auth.name}</span>
                         </Link>

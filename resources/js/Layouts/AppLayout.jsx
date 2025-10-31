@@ -98,7 +98,7 @@ export default function AppLayout({ children, title }) {
                     <Link href="#">
                         <span className="sr-only">Your profile</span>
                         <Avatar>
-                            <AvatarFallback>X</AvatarFallback>
+                            <AvatarFallback>{auth.name.slice(0, 1)}</AvatarFallback>
                         </Avatar>
                     </Link>
                 </div>
