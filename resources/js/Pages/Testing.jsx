@@ -1,11 +1,11 @@
 import AppLayout from '@/Layouts/AppLayout';
-import { Head } from '@inertiajs/react';
 
 export default function Testing() {
     return (
         <>
-            <Head title="Testing" />
-            <AppLayout>Testing</AppLayout>
+            <div>Testing</div>
         </>
     );
 }
+
+Testing.layout = (page) => <AppLayout children={page} title={'Testing'} />;
