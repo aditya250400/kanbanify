@@ -13,6 +13,8 @@ export default function AppLayout({ children, title }) {
     const auth = usePage().props.auth.user;
     const { url } = usePage();
 
+    const workspaces = usePage().props.workspaces;
+
     return (
         <>
             <Toaster position="top-center" richColors />
@@ -64,7 +66,7 @@ export default function AppLayout({ children, title }) {
                                         </div>
                                     </Transition.Child>
                                     {/* Sidebar Responsive */}
-                                    <SidebarResponsive auth={auth} url={url} />
+                                    <SidebarResponsive workspaces={workspaces} auth={auth} url={url} />
                                 </Dialog.Panel>
                             </Transition.Child>
                         </div>
@@ -82,7 +84,7 @@ export default function AppLayout({ children, title }) {
                             </Link>
                         </div>
                         {/* Sidebar */}
-                        <Sidebar auth={auth} url={url} />
+                        <Sidebar workspaces={workspaces} auth={auth} url={url} />
                     </div>
                 </div>
 
