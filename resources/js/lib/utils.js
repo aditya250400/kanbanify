@@ -21,5 +21,5 @@ export const PRIORITY = {
 };
 
 export function flashMessage(params) {
-    return params.props.flashMessage;
+    return params.props.flash_message;
 }
