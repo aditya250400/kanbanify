@@ -10,7 +10,8 @@ import { useForm, usePage } from '@inertiajs/react';
 import { useRef } from 'react';
 import { toast } from 'sonner';
 
-export default function MemberWorkspace({ action, members }) {
+export default function MemberWorkspace({ action, members, workspace }) {
+    console.log(workspace);
     const { data, setData, processing, errors, reset, post, recentlySuccessful } = useForm({
         email: '',
     });
@@ -89,22 +90,23 @@ export default function MemberWorkspace({ action, members }) {
                                         <AvatarFallback>{member.user.name.substring(0, 1)}</AvatarFallback>
                                     </Avatar>
                                     <div className="ml-4 flex min-w-0 flex-col">
-                                        <span className="truncate font-medium">{`${member.user.name} ${member.user.name == user.name ? '(You)' : ''}`}</span>
+                                        <span className="truncate font-medium">{`${member.user.name} ${member.user.name == user.name ? '(You)' : ''} ${member.user.id == workspace.user_id ? '(Owner)' : ''}`}</span>
                                         <span className="hidden text-muted-foreground sm:block">
                                             {member.user.email}
                                         </span>
                                     </div>
                                 </div>
-                                {member.user.id == user.id ? null : (
-                                    <div className="ml-4 flex shrink-0">
-                                        <Button
-                                            variant="link"
-                                            className="font-medium text-blue-500 hover:text-blue-600 hover:no-underline"
-                                        >
-                                            Delete
-                                        </Button>
-                                    </div>
-                                )}
+                                {!member.user.id == workspace.user_id ||
+                                    (member.user.id != workspace.user_id && user.id == workspace.user_id && (
+                                        <div className="ml-4 flex shrink-0">
+                                            <Button
+                                                variant="link"
+                                                className="font-medium text-blue-500 hover:text-blue-600 hover:no-underline"
+                                            >
+                                                Delete
+                                            </Button>
+                                        </div>
+                                    ))}
                             </li>
                         ))}
                     </ul>

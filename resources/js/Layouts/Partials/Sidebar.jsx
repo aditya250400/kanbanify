@@ -4,7 +4,7 @@ import { Link } from '@inertiajs/react';
 import { PiHouse, PiLockKeyOpen, PiPlus, PiSquaresFour, PiUsers } from 'react-icons/pi';
 
 export default function Sidebar({ auth, url, workspaces }) {
-    console.log(url);
+    console.log(workspaces);
     return (
         <>
             <nav className="flex flex-1 flex-col">
@@ -106,9 +106,9 @@ export default function Sidebar({ auth, url, workspaces }) {
                             {workspaces.map((workspace, index) => (
                                 <li key={index}>
                                     <Link
-                                        href={route('workspaces.show', [workspace.slug])}
+                                        href={route('workspaces.show', [workspace.memberable.slug])}
                                         className={cn(
-                                            url.startsWith(`/workspaces/p/${workspace.slug}`)
+                                            url.startsWith(`/workspaces/p/${workspace.memberable.slug}`)
                                                 ? 'bg-blue-500 text-white'
                                                 : 'text-foreground hover:bg-gray-100',
                                             'group flex gap-x-3 rounded-md p-3 text-sm font-semibold leading-relaxed',
@@ -116,15 +116,15 @@ export default function Sidebar({ auth, url, workspaces }) {
                                     >
                                         <span
                                             className={cn(
-                                                url.startsWith(`/workspaces/p/${workspace.slug}`)
+                                                url.startsWith(`/workspaces/p/${workspace.memberable.slug}`)
                                                     ? 'border-white bg-blue-500 text-white'
                                                     : 'border-foreground text-foreground hover:bg-gray-100',
                                                 'flex h-6 w-6 shrink-0 items-center justify-center rounded-lg border text-[0.625rem] font-medium',
                                             )}
                                         >
-                                            {workspace.name.slice(0, 1)}
+                                            {workspace.memberable.name.slice(0, 1)}
                                         </span>
-                                        <span className="truncate">{workspace.name}</span>
+                                        <span className="truncate">{workspace.memberable.name}</span>
                                     </Link>
                                 </li>
                             ))}
