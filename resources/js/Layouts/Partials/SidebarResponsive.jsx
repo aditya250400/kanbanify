@@ -5,7 +5,7 @@ import { PiHouse, PiLockKeyOpen, PiPlus, PiSquaresFour, PiUsers } from 'react-ic
 export default function SidebarResponsive({ auth, url, workspaces }) {
     return (
         <>
-            <div className="flex grow flex-col gap-y-5 overflow-y-auto bg-white px-6 pb-2 dark:bg-gray-900">
+            <div className="scroll-bar flex grow flex-col gap-y-5 overflow-y-auto bg-white px-6 pb-2 dark:bg-gray-900">
                 <div className="flex h-16 shrink-0 items-center space-x-1.5">
                     <Link href="/" className="-m-1.5 p-1.5 text-2xl font-black leading-relaxed tracking-tighter">
                         Kanbanify<span className="text-blue-500">.</span>

@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Enums\Workspacevisibility;
 use App\Http\Requests\WorkspaceRequest;
+use App\Http\Resources\WorkspaceResource;
+use App\Models\Workspace;
 use App\Traits\HasFile;
 use Illuminate\Http\Request;
 
@@ -25,7 +27,7 @@ class WorkspaceController extends Controller
 
     public function store(WorkspaceRequest $request)
     {
-        $request->user()->workspaces()->create([
+        $workspace = $request->user()->workspaces()->create([
             'name' => $name = $request->name,
             'slug' => str()->slug($name, str()->uuid(10)),
             'cover' => $this->upload_file($request, 'cover', 'workspaces/cover'),
@@ -35,6 +37,13 @@ class WorkspaceController extends Controller
 
         flashMessage('Workspace saved successfully');
 
-        return back();
+        return to_route('workspaces.show', $workspace);
+    }
+
+    public function show(Workspace $workspace)
+    {
+        return inertia('Workspaces/Show', [
+            'workspace' => new WorkspaceResource($workspace),
+        ]);
     }
 }
