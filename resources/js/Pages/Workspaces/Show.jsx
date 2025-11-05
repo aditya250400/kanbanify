@@ -25,13 +25,13 @@ export default function Show({ ...props }) {
                             </div>
                             <div className="mt-8 flex items-center gap-x-6">
                                 <Link
-                                    href="#"
+                                    href={''}
                                     className="items-tenter inline-flex justify-center whitespace-nowrap text-sm font-medium text-foreground transition-colors hover:font-bold hover:text-blue-500 hover:no-underline hover:transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50"
                                 >
                                     Create Card
                                 </Link>
                                 <Link
-                                    href="#"
+                                    href={route('workspaces.edit', [workspace])}
                                     className="items-tenter inline-flex justify-center whitespace-nowrap text-sm font-medium text-foreground transition-colors hover:font-bold hover:text-blue-500 hover:no-underline hover:transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50"
                                 >
                                     Settings
