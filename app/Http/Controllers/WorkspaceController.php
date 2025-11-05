@@ -56,7 +56,7 @@ class WorkspaceController extends Controller
     public function edit(Workspace $workspace)
     {
         return inertia('Workspaces/Setting', [
-            'workspace' => new WorkspaceResource($workspace),
+            'workspace' => new WorkspaceResource($workspace->load('members')),
             'page_settings' => [
                 'title' => 'Edit Workspace',
                 'subtitle' => 'Fill out this form to edit workspace',
