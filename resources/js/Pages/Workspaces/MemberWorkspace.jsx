@@ -6,12 +6,11 @@ import { Card, CardContent } from '@/Components/ui/card';
 import { Input } from '@/Components/ui/input';
 import { flashMessage } from '@/lib/utils';
 import { Transition } from '@headlessui/react';
-import { useForm, usePage } from '@inertiajs/react';
+import { router, useForm, usePage } from '@inertiajs/react';
 import { useRef } from 'react';
 import { toast } from 'sonner';
 
 export default function MemberWorkspace({ action, members, workspace }) {
-    console.log(workspace);
     const { data, setData, processing, errors, reset, post, recentlySuccessful } = useForm({
         email: '',
     });
@@ -59,7 +58,7 @@ export default function MemberWorkspace({ action, members, workspace }) {
                             </div>
                         </div>
                     </div>
-                    <div className="flex items-center justify-end gap-x-2 py-6">
+                    <div className="flex items-center justify-end py-6 gap-x-2">
                         <Button type="button" variant="ghost" onClick={onHandleReset}>
                             Reset
                         </Button>
@@ -77,36 +76,58 @@ export default function MemberWorkspace({ action, members, workspace }) {
                         </Transition>
                     </div>
                 </form>
-                <div className="space-y-4 py-6">
-                    <ul role="list" className="divide-y divide-gray-100 rounded-md border border-gray-200">
+                <div className="py-6 space-y-4">
+                    <ul role="list" className="border border-gray-200 divide-y divide-gray-100 rounded-md">
                         {members.map((member, index) => (
                             <li
                                 className="flex items-center justify-between py-4 pl-4 pr-5 text-sm leading-relaxed"
                                 key={index}
                             >
-                                <div className="flex w-0 flex-1 items-center">
+                                <div className="flex items-center flex-1 w-0">
                                     <Avatar>
                                         <AvatarImage src={member.user.avatar} alt={member.user.name} />
                                         <AvatarFallback>{member.user.name.substring(0, 1)}</AvatarFallback>
                                     </Avatar>
-                                    <div className="ml-4 flex min-w-0 flex-col">
-                                        <span className="truncate font-medium">{`${member.user.name} ${member.user.name == user.name ? '(You)' : ''} ${member.user.id == workspace.user_id ? '(Owner)' : ''}`}</span>
+                                    <div className="flex flex-col min-w-0 ml-4">
+                                        <span className="font-medium truncate">{`${member.user.name} ${member.user.name == user.name ? '(You)' : ''}`}</span>
                                         <span className="hidden text-muted-foreground sm:block">
                                             {member.user.email}
                                         </span>
                                     </div>
                                 </div>
-                                {!member.user.id == workspace.user_id ||
-                                    (member.user.id != workspace.user_id && user.id == workspace.user_id && (
-                                        <div className="ml-4 flex shrink-0">
-                                            <Button
-                                                variant="link"
-                                                className="font-medium text-blue-500 hover:text-blue-600 hover:no-underline"
-                                            >
-                                                Delete
-                                            </Button>
-                                        </div>
-                                    ))}
+                                {member.role != 'Owner' ? (
+                                    <div className="flex ml-4 shrink-0">
+                                        <Button
+                                            onClick={() =>
+                                                router.delete(
+                                                    route('workspaces.member.destroy', {
+                                                        workspace: member.memberable_id,
+                                                        member: member.id,
+                                                    }),
+                                                    {
+                                                        preserveScroll: true,
+                                                        preserveState: true,
+                                                        onSuccess: (success) => {
+                                                            const flash = flashMessage(success);
+                                                            if (flash) toast[flash.type](flash.message);
+                                                        },
+                                                    },
+                                                )
+                                            }
+                                            variant="link"
+                                            className="font-medium text-blue-500 hover:text-blue-600 hover:no-underline"
+                                        >
+                                            Delete
+                                        </Button>
+                                    </div>
+                                ) : (
+                                    <Button
+                                        variant="ghost"
+                                        className="font-medium text-blue-500 hover:text-blue-600 hover:no-underline"
+                                    >
+                                        {member.role}
+                                    </Button>
+                                )}
                             </li>
                         ))}
                     </ul>

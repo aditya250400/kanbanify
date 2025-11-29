@@ -33,7 +33,7 @@ Route::controller(WorkspaceController::class)->group(function () {
     Route::delete('workspaces/destroy/{workspace:slug}', 'destroy')->name('workspaces.destroy');
 
     Route::post('workspaces/member/{workspace:slug}/store', 'member_store')->name('workspaces.member.store');
-    Route::delete('workspaces/member/{workspace:slug}/destroy', 'member_destroy')->name('workspaces.member.destroy');
+    Route::delete('workspaces/member/{workspace}/destroy/{member}', 'member_destroy')->name('workspaces.member.destroy');
 });
 
 require __DIR__ . '/auth.php';
