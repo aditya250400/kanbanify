@@ -119,4 +119,17 @@ class WorkspaceController extends Controller
 
         return back();
     }
+
+    public function destroy(Workspace $workspace)
+    {
+        $this->delete_file($workspace, 'cover');
+        $this->delete_file($workspace, 'logo');
+
+        $workspace->members()->delete();
+        $workspace->delete();
+
+        flashMessage('Workspace has been successfully deleted!');
+
+        return to_route('dashboard');
+    }
 }
