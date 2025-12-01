@@ -31,7 +31,7 @@ class WorkspaceController extends Controller
     {
         $workspace = $request->user()->workspaces()->create([
             'name' => $name = $request->name,
-            'slug' => str()->slug($name, str()->uuid(10)),
+            'slug' => str()->slug($name) . '-' . str()->uuid(),
             'cover' => $this->upload_file($request, 'cover', 'workspaces/cover'),
             'logo' => $this->upload_file($request, 'logo', 'workspaces/logo'),
             'visibility' => $request->visibility,
@@ -72,7 +72,7 @@ class WorkspaceController extends Controller
     {
         $workspace->update([
             'name' => $name = $request->name,
-            'slug' => str()->slug($name, str()->uuid(10)),
+            'slug' => str()->slug($name) . '-' . str()->uuid(),
             'cover' => $request->hasFile('cover') ? $this->update_file($request, $workspace, 'cover', 'workspaces/cover') : $workspace->cover,
             'logo' => $request->hasFile('logo') ? $this->update_file($request, $workspace, 'logo', 'workspaces/logo') : $workspace->logo,
             'visibility' => $request->visibility,
