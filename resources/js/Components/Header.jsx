@@ -1,3 +1,5 @@
+import { cn } from '@/lib/utils';
+
 export default function Header({ className, title, subtitle }) {
     return (
         <div className={cn(className, 'mb-8')}>

@@ -6,6 +6,7 @@ use App\Enums\CardPriority;
 use App\Enums\CardStatus;
 use App\Http\Requests\CardRequest;
 use App\Http\Resources\CardResource;
+use App\Http\Resources\CardSingleResource;
 use App\Http\Resources\WorkspaceResource;
 use App\Models\Card;
 use App\Models\Workspace;
@@ -67,5 +68,16 @@ class CardController extends Controller
         if (!$last_card) return 1;
 
         return $last_card->order + 1;
+    }
+
+    public function show(Workspace $workspace, Card $card)
+    {
+        return inertia('Cards/Show', [
+            'card' => new CardSingleResource($card->load(['members', 'user', 'tasks', 'attachments'])),
+            'page_settings' => [
+                'title' => 'Detail Card',
+                'subtitle' => 'You can see the detail card information'
+            ]
+        ]);
     }
 }
