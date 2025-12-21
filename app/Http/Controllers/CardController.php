@@ -10,7 +10,9 @@ use App\Http\Resources\CardSingleResource;
 use App\Http\Resources\WorkspaceResource;
 use App\Models\Card;
 use App\Models\Workspace;
+use Doctrine\Inflector\Rules\Word;
 use Illuminate\Http\Request;
+use Illuminate\Queue\Worker;
 
 class CardController extends Controller
 {
@@ -79,5 +81,57 @@ class CardController extends Controller
                 'subtitle' => 'You can see the detail card information'
             ]
         ]);
+    }
+
+    public function edit(Workspace $workspace, Card $card)
+    {
+        return inertia('Cards/Edit', [
+            'card' => new CardSingleResource($card->load(['members', 'user', 'tasks', 'attachments'])),
+            'page_settings' => [
+                'title' => 'Edit Card',
+                'subtitle' => 'Fill this form to edit card',
+                'method' => 'PUT',
+                'action' => route('cards.update', [$workspace, $card])
+            ],
+            'statuses' => CardStatus::options(),
+            'priorities' => CardPriority::options(),
+            'workspace' => $workspace->only('slug'),
+        ]);
+    }
+
+    public function update(Workspace $workspace, Card $card, CardRequest $request)
+    {
+        $last_status = $card->status->value;
+
+        $card->update([
+            'title' => $request->title,
+            'description' => $request->description,
+            'deadline' => $request->deadline,
+            'status' => $status = $request->status,
+            'priority' => $request->priority,
+            'order' => $this->ordering($workspace, $status),
+        ]);
+
+
+        $this->adjustOrdering($workspace, $last_status);
+
+        flashMessage('Card saved successfully updated');
+
+        return back();
+    }
+
+    public function adjustOrdering(Workspace $workspace, $status)
+    {
+        $order = 1;
+
+        return Card::where('workspace_id', $workspace->id)
+            ->where('status', $status)
+            ->orderBy('order')
+            ->get()
+            ->each(function ($card) use (&$order) {
+                $card->order = $order;
+                $card->save();
+                $order++;
+            });
     }
 }

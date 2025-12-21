@@ -5,7 +5,6 @@ import { Card, CardContent } from '@/Components/ui/card';
 import AppLayout from '@/Layouts/AppLayout';
 
 export default function Show({ card, page_settings }) {
-    console.log(card);
     return (
         <>
             <Header title={page_settings.title} subtitle={page_settings.subtitle} />

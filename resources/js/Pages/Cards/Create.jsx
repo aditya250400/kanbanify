@@ -11,12 +11,12 @@ import { Transition } from '@headlessui/react';
 import { useForm } from '@inertiajs/react';
 import { toast } from 'sonner';
 
-export default function Create({ page_settings, statuses, priorities, workspace }) {
+export default function Create({ page_settings, statuses, priorities, workspace, status }) {
     const { data, setData, processing, errors, reset, post, recentlySuccessful } = useForm({
         title: '',
         description: '',
         deadline: '',
-        status: 'To Do',
+        status,
         priority: 'Unknown',
         _method: page_settings.method,
     });
