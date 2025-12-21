@@ -134,4 +134,16 @@ class CardController extends Controller
                 $order++;
             });
     }
+
+    public function destroy(Workspace $workspace, Card $card)
+    {
+        $last_status = $card->status->value;
+        $card->delete();
+
+        $this->adjustOrdering($workspace, $last_status);
+
+        flashMessage('Card successfully deleted!');
+
+        return to_route('workspaces.show', $workspace);
+    }
 }
