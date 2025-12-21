@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Enums\CardPriority;
 use App\Enums\CardStatus;
 use App\Http\Requests\CardRequest;
+use App\Http\Resources\CardResource;
+use App\Http\Resources\WorkspaceResource;
 use App\Models\Card;
 use App\Models\Workspace;
 use Illuminate\Http\Request;

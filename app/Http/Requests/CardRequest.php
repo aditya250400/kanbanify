@@ -27,7 +27,7 @@ class CardRequest extends FormRequest
         return [
             'title' => 'required|max:255',
             'description' => 'required|max:255',
-            'deadline' => 'nullable|date',
+            'deadline' => 'required|date',
             'status' => ['required', new Enum(CardStatus::class)],
             'priority' => ['required', new Enum(CardPriority::class)],
 
