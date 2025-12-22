@@ -1,5 +1,6 @@
 import HeaderForm from '@/Components/HeaderForm';
 import AppLayout from '@/Layouts/AppLayout';
+import AttachmentCard from './AttachmentCard';
 import MemberCard from './MemberCard';
 import UpdateCard from './UpdateCard';
 
@@ -15,6 +16,15 @@ export default function Edit({ card, page_settings, statuses, priorities }) {
                     <HeaderForm title={'Members'} subtitle={'Add members to the card'} />
                     <MemberCard
                         action={route('member_card.store', {
+                            card,
+                        })}
+                        members={card.members}
+                    />
+                </div>
+                <div className="grid grid-cols-1 gap-x-4 gap-y-8 pt-10 md:grid-cols-3">
+                    <HeaderForm title={'Attachment'} subtitle={'Add attachment to the card'} />
+                    <AttachmentCard
+                        action={route('attachments.store', {
                             card,
                         })}
                         members={card.members}
