@@ -38,6 +38,7 @@ export default function Edit({ card, page_settings, statuses, priorities }) {
                         action={route('tasks.store', {
                             card,
                         })}
+                        tasks={card.tasks}
                     />
                 </div>
             </div>
