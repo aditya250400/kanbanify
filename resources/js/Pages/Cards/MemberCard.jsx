@@ -6,7 +6,7 @@ import { Button } from '@/Components/ui/button';
 import { Card, CardContent } from '@/Components/ui/card';
 import { flashMessage } from '@/lib/utils';
 import { Transition } from '@headlessui/react';
-import { useForm } from '@inertiajs/react';
+import { router, useForm } from '@inertiajs/react';
 import { toast } from 'sonner';
 
 export default function MemberCard({ action, members }) {
@@ -97,12 +97,29 @@ export default function MemberCard({ action, members }) {
                                             <Button
                                                 variant="link"
                                                 className="font-medium text-blue-500 hover:text-blue-600 hover:no-underline"
-                                                onClick={() => alert('deleted')}
+                                                onClick={() =>
+                                                    router.delete(
+                                                        route('member_card.destroy', {
+                                                            card: member.memberable_id,
+                                                            member: member.id,
+                                                        }),
+                                                        {
+                                                            preserveScroll: true,
+                                                            preserveState: true,
+                                                            onSuccess: (success) => {
+                                                                const flash = flashMessage(success);
+                                                                if (flash) toast[flash.type](flash.message);
+                                                            },
+                                                        },
+                                                    )
+                                                }
                                             >
                                                 Delete
                                             </Button>
                                         </div>
-                                    ) : null}
+                                    ) : (
+                                        <Button variant="ghost">{member.role}</Button>
+                                    )}
                                 </li>
                             ))}
                         </ul>

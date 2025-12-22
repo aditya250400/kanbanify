@@ -3,12 +3,13 @@
 namespace App\Http\Controllers;
 
 use App\Models\Card;
+use App\Models\Member;
 use App\Models\User;
 use Illuminate\Http\Request;
 
 class MemberCardController extends Controller
 {
-    public function member_store(Card $card, Request $request)
+    public function store(Card $card, Request $request)
     {
         $request->validate([
             'email' => 'required|email|string',
@@ -34,6 +35,16 @@ class MemberCardController extends Controller
         ]);
 
         flashMessage('Member successfully invited!');
+        return back();
+    }
+
+    public function destroy(Card $card, Member $member)
+    {
+
+        $member->delete();
+
+        flashMessage('Member successfully deleted!');
+
         return back();
     }
 }

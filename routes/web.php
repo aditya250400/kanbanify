@@ -52,7 +52,8 @@ Route::middleware('auth')->group(function () {
 
     // Member Card
     Route::controller(MemberCardController::class)->group(function () {
-        Route::post('cards/member/{card}/store', 'member_store')->name('member_card.store');
+        Route::post('cards/member/{card}/store', 'store')->name('member_card.store');
+        Route::delete('card/member/{card}/destroy/{member}', 'destroy')->name('member_card.destroy');
     });
 });
 
