@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\AttachmentRequest;
+use App\Models\Attachment;
 use App\Models\Card;
 use App\Traits\HasFile;
 use Illuminate\Http\Request;
@@ -21,6 +22,18 @@ class AttachmentController extends Controller
         ]);
 
         flashMessage('Attachment saved successfully');
+
+        return back();
+    }
+
+    public function destroy(Card $card, Attachment $attachment)
+    {
+
+        $this->delete_file($attachment, 'file');
+
+        $attachment->delete();
+
+        flashMessage('The Attachment sucessfully deleted!');
 
         return back();
     }
