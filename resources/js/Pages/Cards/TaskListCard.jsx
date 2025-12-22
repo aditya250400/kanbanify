@@ -30,7 +30,7 @@ export default function TaskListCard({ tasks }) {
                                             className="font-medium text-blue-500 hover:text-blue-600 hover:no-underline"
                                             onClick={() =>
                                                 router.delete(
-                                                    route('attachments.destroy', {
+                                                    route('tasks.destroy', {
                                                         card: task.card_id,
                                                         task: task.id,
                                                     }),

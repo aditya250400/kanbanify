@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Card;
+use App\Models\Task;
 use Illuminate\Http\Request;
 
 class TaskController extends Controller
@@ -18,6 +19,14 @@ class TaskController extends Controller
 
         flashMessage('Task saved successfully');
 
+        return back();
+    }
+
+    public function destroy(Card $card, Task $task)
+    {
+        $task->delete();
+
+        flashMessage('Task successfully deleted');
         return back();
     }
 }
