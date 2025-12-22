@@ -130,7 +130,7 @@ export default function Create({ page_settings, statuses, priorities, workspace,
                                     </div>
                                 </div>
                                 <div className="flex items-center justify-end gap-x-2 py-6">
-                                    <Button type="button" variant="ghost" onClick={() => reset()}>
+                                    <Button tabIndex={-1} type="button" variant="ghost" onClick={() => reset()}>
                                         Reset
                                     </Button>
                                     <Button variant="blue" type="submit" disabled={processing}>

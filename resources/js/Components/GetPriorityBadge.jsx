@@ -8,11 +8,11 @@ export default function GetPriorityBadge({ priority }) {
 
     switch (priority) {
         case URGENT:
-            badge = 'bg-red-500 hover:bg-red-600';
+            badge = 'bg-red-700 hover:bg-red-800';
             text = URGENT;
             break;
         case HIGH:
-            badge = 'bg-yellow-500 hover:bg-yellow-600';
+            badge = 'bg-red-500 hover:bg-red-600';
             text = HIGH;
             break;
         case MEDIUM:

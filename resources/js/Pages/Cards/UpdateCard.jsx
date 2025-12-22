@@ -121,8 +121,8 @@ export default function UpdateCard({ card, page_settings, statuses, priorities }
                                 </div>
                             </div>
                         </div>
-                        <div className="flex items-center justify-end py-6 gap-x-2">
-                            <Button type="button" variant="ghost" onClick={() => reset()}>
+                        <div className="flex items-center justify-end gap-x-2 py-6">
+                            <Button tabIndex={-1} type="button" variant="ghost" onClick={() => reset()}>
                                 Reset
                             </Button>
                             <Button variant="blue" type="submit" disabled={processing}>

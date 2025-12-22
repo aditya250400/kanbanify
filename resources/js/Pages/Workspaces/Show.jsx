@@ -55,7 +55,7 @@ export default function Show({ ...props }) {
                 {/* cards */}
                 <div className="mt-8 flex w-full flex-col justify-start gap-x-5 gap-y-8 sm:flex-row">
                     {statuses.map((status, index) => (
-                        <div key={index} className="w-full space-y-4 sm:w-1/4">
+                        <div key={index} className="w-full space-y-4">
                             <div className="flex items-center justify-between">
                                 <span className="text-base font-semibold leading-relaxed tracking-tighter">
                                     {status.value}
@@ -81,11 +81,11 @@ export default function Show({ ...props }) {
                                     .map((card, index) => (
                                         <Card
                                             key={index}
-                                            className="relative rounded-xl hover:ring-2 hover:ring-inset hover:ring-blue-500"
+                                            className="group relative rounded-xl hover:cursor-pointer hover:ring-2 hover:ring-inset hover:ring-blue-500"
                                         >
                                             <CardHeader>
                                                 <div className="flex items-center justify-between">
-                                                    <CardTitle className="line-clamp-2 text-base leading-relaxed tracking-tighter">
+                                                    <CardTitle className="line-clamp-2 text-base leading-relaxed tracking-tighter group-hover:line-clamp-none">
                                                         <Link
                                                             className="hover:text-blue-500"
                                                             href={route('cards.show', [workspace, card])}

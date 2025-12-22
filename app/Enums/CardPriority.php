@@ -10,7 +10,7 @@ enum CardPriority: string
 
     case MEDIUM = 'Medium';
 
-    case LOW = 'LOW';
+    case LOW = 'Low';
 
     case UNKNOWN = 'Unknown';
 

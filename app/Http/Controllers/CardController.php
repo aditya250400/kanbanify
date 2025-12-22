@@ -46,12 +46,17 @@ class CardController extends Controller
             'priority' => $request->priority,
         ]);
 
+        $card->members()->create([
+            'user_id' => $request->user()->id,
+            'role' => $card->user_id == $request->user()->id ? 'Owner' : 'Member',
+        ]);
+
 
 
 
         flashMessage('Card saved successfully');
 
-        return to_route('workspaces.show', [$workspace]);
+        return to_route('cards.edit', [$workspace, $card]);
     }
 
     public function ordering(Workspace $workspace, $status)
@@ -117,7 +122,7 @@ class CardController extends Controller
 
         flashMessage('Card saved successfully updated');
 
-        return back();
+        return to_route('workspaces.show', $workspace);
     }
 
     public function adjustOrdering(Workspace $workspace, $status)

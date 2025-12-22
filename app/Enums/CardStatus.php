@@ -8,7 +8,7 @@ enum CardStatus: string
 
     case INPROGRESS = 'In Progress';
 
-    case ONREVIEW = 'On Review';
+        // case ONREVIEW = 'On Review';
 
     case DONE = 'Done';
 
