@@ -27,6 +27,7 @@ export default function Edit({ card, page_settings, statuses, priorities }) {
                         action={route('attachments.store', {
                             card,
                         })}
+                        attachments={card.attachments}
                         members={card.members}
                     />
                 </div>
