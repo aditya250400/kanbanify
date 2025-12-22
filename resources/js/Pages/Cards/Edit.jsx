@@ -2,6 +2,7 @@ import HeaderForm from '@/Components/HeaderForm';
 import AppLayout from '@/Layouts/AppLayout';
 import AttachmentCard from './AttachmentCard';
 import MemberCard from './MemberCard';
+import TaskCard from './TaskCard';
 import UpdateCard from './UpdateCard';
 
 export default function Edit({ card, page_settings, statuses, priorities }) {
@@ -29,6 +30,14 @@ export default function Edit({ card, page_settings, statuses, priorities }) {
                         })}
                         attachments={card.attachments}
                         members={card.members}
+                    />
+                </div>
+                <div className="grid grid-cols-1 gap-x-4 gap-y-8 pt-10 md:grid-cols-3">
+                    <HeaderForm title={'Task'} subtitle={'Add task to the card'} />
+                    <TaskCard
+                        action={route('tasks.store', {
+                            card,
+                        })}
                     />
                 </div>
             </div>
