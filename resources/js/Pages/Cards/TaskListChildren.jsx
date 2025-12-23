@@ -1,0 +1,41 @@
+import { Button } from '@/Components/ui/button';
+import { PiCheckSquareFill, PiSquare } from 'react-icons/pi';
+
+export default function TaskListChildren({ children }) {
+    return (
+        <>
+            <ul role="list" className="divide-y divide-gray-100 rounded-md border-gray-200">
+                {children.length > 0 &&
+                    children.map((item, index) => (
+                        <li className="flex items-center justify-between text-sm leading-relaxed" key={index}>
+                            <div className="flex w-0 flex-1 items-center">
+                                <Button type="button" size="icon" variant="ghost" onClick={() => alert('completed')}>
+                                    {item.is_completed ? (
+                                        <PiCheckSquareFill className="h-5 w-5 flex-shrink-0 text-foreground" />
+                                    ) : (
+                                        <PiSquare className="h-5 w-5 flex-shrink-0 text-foreground" />
+                                    )}
+                                </Button>
+                                <div className="ml-4 flex min-w-0 flex-1 gap-2">
+                                    {item.is_completed ? (
+                                        <span className="truncate font-medium line-through">{item.title}</span>
+                                    ) : (
+                                        <span className="truncate font-medium">{item.title}</span>
+                                    )}
+                                </div>
+                            </div>
+                            <div className="ml-4 flex-shrink-0">
+                                <Button
+                                    variant="link"
+                                    className="font-medium text-blue-500 hover:text-blue-600 hover:no-underline"
+                                    onClick={() => alert('Delete')}
+                                >
+                                    Delete
+                                </Button>
+                            </div>
+                        </li>
+                    ))}
+            </ul>
+        </>
+    );
+}
