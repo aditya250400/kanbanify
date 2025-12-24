@@ -1,5 +1,8 @@
 import { Button } from '@/Components/ui/button';
+import { flashMessage } from '@/lib/utils';
+import { router } from '@inertiajs/react';
 import { PiCheckSquareFill, PiSquare } from 'react-icons/pi';
+import { toast } from 'sonner';
 
 export default function TaskListChildren({ children }) {
     return (
@@ -28,7 +31,22 @@ export default function TaskListChildren({ children }) {
                                 <Button
                                     variant="link"
                                     className="font-medium text-blue-500 hover:text-blue-600 hover:no-underline"
-                                    onClick={() => alert('Delete')}
+                                    onClick={() =>
+                                        router.delete(
+                                            route('tasks.destroy', {
+                                                card: item.card_id,
+                                                task: item.id,
+                                            }),
+                                            {
+                                                preserveScroll: true,
+                                                preserveState: true,
+                                                onSuccess: (success) => {
+                                                    const flash = flashMessage(success);
+                                                    if (flash) toast[flash.type](flash.message);
+                                                },
+                                            },
+                                        )
+                                    }
                                 >
                                     Delete
                                 </Button>

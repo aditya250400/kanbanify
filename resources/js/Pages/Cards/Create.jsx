@@ -28,12 +28,13 @@ export default function Create({ page_settings, statuses, priorities, workspace,
     const onHandleSubmit = (e) => {
         e.preventDefault();
         post(page_settings.action, {
-            preserveScroll: true,
-            preserveState: true,
             onSuccess: (success) => {
+                reset();
                 const flash = flashMessage(success);
                 if (flash) toast[flash.type](flash.message);
             },
+            preserveScroll: true,
+            preserveState: true,
         });
     };
     return (
