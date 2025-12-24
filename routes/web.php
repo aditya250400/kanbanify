@@ -49,7 +49,7 @@ Route::middleware('auth')->group(function () {
         Route::get('workspaces/p/{workspace:slug}/cards/edit/{card}', 'edit')->name('cards.edit');
         Route::put('cards/workspaces{workspace:slug}/edit/{card}', 'update')->name('cards.update');
         Route::post('cards/workspaces{workspace:slug}/{card}/reorder', 'reorder')->name('cards.reorder');
-        Route::delete('cards/workspaces{workspace:slug}/destroy/{card}', 'destroy')->name('cards.destroy');
+        Route::delete('cards/workspaces/{workspace:slug}/destroy/{card}', 'destroy')->name('cards.destroy');
     });
 
     // Member Card

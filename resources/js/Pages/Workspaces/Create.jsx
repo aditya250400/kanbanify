@@ -33,7 +33,6 @@ export default function Create({ page_settings, visibilities }) {
             onSuccess: (success) => {
                 const flash = flashMessage(success);
                 if (flash) toast[flash.type](flash.message);
-                console.log(success);
                 onHandleReset();
             },
             preserveScroll: true,
