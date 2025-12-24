@@ -1,6 +1,7 @@
 import InputError from '@/Components/InputError';
 import TextInput from '@/Components/TextInput';
 import { Button } from '@/Components/ui/button';
+import { Progress } from '@/Components/ui/progress';
 import { flashMessage } from '@/lib/utils';
 import { router, useForm } from '@inertiajs/react';
 import { useState } from 'react';
@@ -16,7 +17,6 @@ export default function TaskListCard({ tasks }) {
     const [showFormItem, setShowFormItem] = useState({});
     const [messageItem, setMessageItem] = useState('');
 
-    console.log(showFormItem);
     const onHandleChange = (e) => {
         setData(e.target.name, e.target.value);
     };
@@ -86,6 +86,10 @@ export default function TaskListCard({ tasks }) {
                                                 </Button>
                                             </div>
                                         </div>
+
+                                        {task.children.length > 0 && (
+                                            <Progress className="mb-4 h-2.5" value={task.percentage} />
+                                        )}
 
                                         <TaskListChildren children={task.children} />
                                         {showFormItem[task.id] ? (

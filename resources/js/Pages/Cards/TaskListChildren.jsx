@@ -12,15 +12,36 @@ export default function TaskListChildren({ children }) {
                     children.map((item, index) => (
                         <li className="flex items-center justify-between text-sm leading-relaxed" key={index}>
                             <div className="flex w-0 flex-1 items-center">
-                                <Button type="button" size="icon" variant="ghost" onClick={() => alert('completed')}>
-                                    {item.is_completed ? (
+                                <Button
+                                    type="button"
+                                    size="icon"
+                                    variant="ghost"
+                                    onClick={() =>
+                                        router.put(
+                                            route('tasks.completed', {
+                                                card: item.card_id,
+                                                task: item.id,
+                                            }),
+                                            {},
+                                            {
+                                                preserveScroll: true,
+                                                preserveState: true,
+                                                onSuccess: (success) => {
+                                                    const flash = flashMessage(success);
+                                                    if (flash) toast[flash.type](flash.message);
+                                                },
+                                            },
+                                        )
+                                    }
+                                >
+                                    {item.is_complete ? (
                                         <PiCheckSquareFill className="h-5 w-5 flex-shrink-0 text-foreground" />
                                     ) : (
                                         <PiSquare className="h-5 w-5 flex-shrink-0 text-foreground" />
                                     )}
                                 </Button>
                                 <div className="ml-4 flex min-w-0 flex-1 gap-2">
-                                    {item.is_completed ? (
+                                    {item.is_complete ? (
                                         <span className="truncate font-medium line-through">{item.title}</span>
                                     ) : (
                                         <span className="truncate font-medium">{item.title}</span>

@@ -69,6 +69,7 @@ Route::middleware('auth')->group(function () {
         Route::post('cards/tasks/{card}/create', 'store')->name('tasks.store');
         Route::delete('cards/tasks/{card}/destroy/{task}', 'destroy')->name('tasks.destroy');
         Route::post('cards/tasks/{card}/{task}/item', 'item')->name('tasks.item');
+        Route::put('cards/tasks/{card}/{task}/completed', 'completed')->name('tasks.completed');
     });
 });
 

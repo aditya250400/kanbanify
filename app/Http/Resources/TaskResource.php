@@ -19,9 +19,12 @@ class TaskResource extends JsonResource
             'card_id' => $this->card_id,
             'user_id' => $this->user_id,
             'title' => $this->title,
-            'is_completed' => $this->is_completed,
+            'is_complete' => $this->is_complete,
             'parent_id' => $this->parent_id,
             'children' => self::collection($this->children),
+            'percentage' => $this->children->count() > 0
+                ? ($this->children->where('is_complete', true)->count() / $this->children->count()) * 100
+                : 0,
         ];
     }
 }

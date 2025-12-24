@@ -44,4 +44,29 @@ class TaskController extends Controller
 
         return back();
     }
+
+    public function completed(Card $card, Task $task)
+    {
+        $previous_is_completed = $task->is_complete;
+
+        $task->update([
+
+            'is_complete' => !$task->is_complete,
+
+        ]);
+
+        $parent = Task::findOrFail($task->parent_id);
+
+        if (Task::where('parent_id', $parent->id)->count() === Task::where('parent_id', $parent->id)->where('is_complete', true)->count()) {
+
+            $parent->update(['is_complete' => true]);
+            flashMessage('Task successfully marked');
+        } else {
+
+            $parent->update(['is_complete' => false]);
+            flashMessage('Task successfully ' . ($previous_is_completed ? 'unmarked' : 'marked'));
+        }
+
+        return back();
+    }
 }
