@@ -32,7 +32,7 @@ export default function CardList({ card, workspace, handleDeleteCard }) {
             <Card
                 ref={setNodeRef}
                 style={style}
-                className="relative flex h-[100px] min-h-[100px] cursor-grab items-center rounded-xl border border-dashed border-muted-foreground p-2.5 text-left opacity-30"
+                className="relative flex h-[100px] min-h-[200px] cursor-grab items-center rounded-xl border border-dashed border-muted-foreground p-2.5 text-left opacity-30"
             ></Card>
         );
     }
