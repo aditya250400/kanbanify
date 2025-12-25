@@ -22,6 +22,10 @@ class MyTaskController extends Controller
                     $subquery->where('title', 'REGEXP', $value);
                 });
             })
+            ->when(request()->field && request()->direction, function ($query) {
+                return $query->join('cards', 'members.memberable_id', '=', 'cards.id')
+                    ->orderBy(request()->field, request()->direction);
+            })
             ->paginate(request()->load ?? 10);
 
 
