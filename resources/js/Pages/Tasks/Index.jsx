@@ -2,25 +2,59 @@ import GetStatusBadge from '@/Components/GetStatusBadge';
 import Header from '@/Components/Header';
 import PaginationTable from '@/Components/PaginationTable';
 import { Button } from '@/Components/ui/button';
-import { Card, CardContent, CardFooter } from '@/Components/ui/card';
+import { Card, CardContent, CardFooter, CardHeader } from '@/Components/ui/card';
 import {
     DropdownMenu,
     DropdownMenuContent,
     DropdownMenuItem,
     DropdownMenuTrigger,
 } from '@/Components/ui/dropdown-menu';
+import { Input } from '@/Components/ui/input';
+import UseFilter from '@/Hooks/UseFilter';
 import AppLayout from '@/Layouts/AppLayout';
 import { Link } from '@inertiajs/react';
+import { useState } from 'react';
 import { PiArrowsDownUp, PiDotsThreeOutlineVerticalFill } from 'react-icons/pi';
 
 export default function Index({ page_settings, ...props }) {
     const { data: tasks, meta, links } = props.tasks;
+    const [params, setParams] = useState(props.state);
 
     console.log(tasks);
+
+    UseFilter({
+        route: route('mytasks.index'),
+        values: params,
+        only: ['tasks'],
+    });
     return (
         <>
             <Header title={page_settings.title} subtitle={page_settings.subtitle} />
             <Card>
+                <CardHeader className="mb-4 p-0">
+                    {/* Filters */}
+
+                    <div className="flex w-full flex-col gap-4 px-6 py-4 lg:flex-row lg:items-center">
+                        <Input
+                            className="w-full sm:w-1/4"
+                            placeholder="search"
+                            value={params?.search}
+                            onChange={(e) => setParams((prev) => ({ ...prev, search: e.target.value }))}
+                        />
+                        {/* <Select value={params?.load} onValueChange={(e) => setParams({ ...params, load: e })}>
+                            <SelectTrigger className="w-full sm:w-24">
+                                <SelectValue placeholder="Load" />
+                            </SelectTrigger>
+                            <SelectContent>
+                                {[10, 23, 50, 75, 100].map((number, index) => (
+                                    <SelectItem key={index} value={number}>
+                                        {number}
+                                    </SelectItem>
+                                ))}
+                            </SelectContent>
+                        </Select> */}
+                    </div>
+                </CardHeader>
                 <CardContent>
                     <div className="my-8 flow-root">
                         <div className="-mx-4 -my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
