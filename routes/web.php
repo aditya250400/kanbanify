@@ -4,6 +4,7 @@ use App\Http\Controllers\AttachmentController;
 use App\Http\Controllers\CardController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\MemberCardController;
+use App\Http\Controllers\MyTaskController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\TaskController;
 use App\Http\Controllers\WorkspaceController;
@@ -71,6 +72,9 @@ Route::middleware('auth')->group(function () {
         Route::post('cards/tasks/{card}/{task}/item', 'item')->name('tasks.item');
         Route::put('cards/tasks/{card}/{task}/completed', 'completed')->name('tasks.completed');
     });
+
+    // my task
+    Route::get('my-tasks', MyTaskController::class)->name('mytasks.index');
 });
 
 

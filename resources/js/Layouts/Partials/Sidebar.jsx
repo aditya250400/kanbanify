@@ -51,7 +51,7 @@ export default function Sidebar({ auth, url, workspaces }) {
                             </li>
                             <li>
                                 <Link
-                                    href="#"
+                                    href={route('mytasks.index')}
                                     className={cn(
                                         url.startsWith('/my-tasks')
                                             ? 'bg-blue-500 text-white'
@@ -61,7 +61,7 @@ export default function Sidebar({ auth, url, workspaces }) {
                                 >
                                     <PiSquaresFour
                                         className={cn(
-                                            url.startsWith('/mytasks') ? 'text-white' : 'text-foreground',
+                                            url.startsWith('/my-tasks') ? 'text-white' : 'text-foreground',
                                             'h-6 w-6 shrink-0',
                                         )}
                                     />
