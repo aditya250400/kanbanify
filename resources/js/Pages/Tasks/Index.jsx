@@ -1,7 +1,8 @@
 import GetStatusBadge from '@/Components/GetStatusBadge';
 import Header from '@/Components/Header';
+import PaginationTable from '@/Components/PaginationTable';
 import { Button } from '@/Components/ui/button';
-import { Card, CardContent } from '@/Components/ui/card';
+import { Card, CardContent, CardFooter } from '@/Components/ui/card';
 import {
     DropdownMenu,
     DropdownMenuContent,
@@ -12,7 +13,10 @@ import AppLayout from '@/Layouts/AppLayout';
 import { Link } from '@inertiajs/react';
 import { PiArrowsDownUp, PiDotsThreeOutlineVerticalFill } from 'react-icons/pi';
 
-export default function Index({ page_settings, tasks }) {
+export default function Index({ page_settings, ...props }) {
+    const { data: tasks, meta, links } = props.tasks;
+
+    console.log(tasks);
     return (
         <>
             <Header title={page_settings.title} subtitle={page_settings.subtitle} />
@@ -99,6 +103,15 @@ export default function Index({ page_settings, tasks }) {
                         </div>
                     </div>
                 </CardContent>
+                <CardFooter className="flex w-full flex-col items-center justify-between gap-y-2 border-t py-3 lg:flex-row">
+                    <p className="text-sm text-muted-foreground">
+                        Showing <span className="font-medium text-blue-600">{meta.to ?? 0}</span> from {meta.total}{' '}
+                        tasks
+                    </p>
+                    <div className="overflow-x-auto">
+                        {meta.has_pages && <PaginationTable meta={meta} links={links} />}
+                    </div>
+                </CardFooter>
             </Card>
         </>
     );

@@ -17,11 +17,16 @@ class MyTaskController extends Controller
         $tasks = Member::query()
             ->where('members.user_id', request()->user()->id)
             ->whereHasMorph('memberable', Card::class)
-            ->get();
+            ->paginate(10);
+
 
         return inertia('Tasks/Index', [
 
-            'tasks' => MyTaskResource::collection($tasks),
+            'tasks' => MyTaskResource::collection($tasks)->additional([
+                'meta' => [
+                    'has_pages' => $tasks->hasPages(),
+                ]
+            ]),
             'page_settings' => [
                 'title' => 'Tasks',
                 'subtitle' => 'List all task in your platform'
