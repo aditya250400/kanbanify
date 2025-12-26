@@ -4,6 +4,7 @@ import { Link } from '@inertiajs/react';
 import { PiHouse, PiLockKeyOpen, PiPlus, PiSquaresFour, PiUsers } from 'react-icons/pi';
 
 export default function Sidebar({ auth, url, workspaces }) {
+    console.log(workspaces);
     return (
         <>
             <nav className="flex flex-1 flex-col">

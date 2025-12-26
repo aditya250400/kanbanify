@@ -12,6 +12,7 @@ use App\Models\User;
 use App\Models\Workspace;
 use App\Traits\HasFile;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Gate;
 
 class WorkspaceController extends Controller
 {
@@ -69,6 +70,7 @@ class WorkspaceController extends Controller
 
     public function edit(Workspace $workspace)
     {
+        Gate::authorize('update_workspace', $workspace);
         return inertia('Workspaces/Setting', [
             'workspace' => new WorkspaceResource($workspace->load('members')),
             'page_settings' => [
@@ -83,6 +85,8 @@ class WorkspaceController extends Controller
 
     public function update(WorkspaceRequest $request, Workspace $workspace)
     {
+        Gate::authorize('update_workspace', $workspace);
+
         $workspace->update([
             'name' => $name = $request->name,
             'slug' => str()->slug($name) . '-' . str()->uuid(),
@@ -98,6 +102,8 @@ class WorkspaceController extends Controller
 
     public function member_store(Workspace $workspace, Request $request)
     {
+
+        Gate::authorize('member_workspace', $workspace);
         $request->validate([
             'email' => 'required|email|string',
         ]);
@@ -135,6 +141,8 @@ class WorkspaceController extends Controller
 
     public function destroy(Workspace $workspace)
     {
+        Gate::authorize('delete_workspace', $workspace);
+
         $this->delete_file($workspace, 'cover');
         $this->delete_file($workspace, 'logo');
 

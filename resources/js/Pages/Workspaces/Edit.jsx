@@ -95,7 +95,7 @@ export default function Edit({ workspace, page_settings, visibilities }) {
                             </div>
                         </div>
                     </div>
-                    <div className="flex items-center justify-between py-6 gap-x-2">
+                    <div className="flex items-center justify-between gap-x-2 py-6">
                         <Button
                             onClick={() =>
                                 router.delete(

@@ -24,6 +24,10 @@ class WorkspaceResource extends JsonResource
             'visibility' => $this->visibility,
             'user_id' => $this->user_id,
             'members' => MemberResource::collection($this->members),
+            'can' => [
+                'edit_workspace' => auth()->user()->can('update_workspace', $this->resource),
+                'invite_workspace' => auth()->user()->can('member_workspace', $this->resource),
+            ]
         ];
     }
 }
