@@ -40,7 +40,12 @@ export default function Index({ page_settings, ...props }) {
     });
     return (
         <>
-            <Header title={page_settings.title} subtitle={page_settings.subtitle} />
+            <div className="flex items-center justify-between">
+                <Header title={page_settings.title} subtitle={page_settings.subtitle} />
+                <Button variant="blue" size="lg" asChild>
+                    <Link href={route('users.create')}>Create</Link>
+                </Button>
+            </div>
             <Card>
                 <CardHeader className="mb-4 p-0">
                     {/* Filters */}
