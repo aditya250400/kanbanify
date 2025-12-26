@@ -22,7 +22,7 @@ export default function MemberCard({ action, members }) {
         e.preventDefault();
         post(action, {
             preserveScroll: true,
-            preserveState: false,
+            preserveState: true,
             onSuccess: (success) => {
                 const flash = flashMessage(success);
                 if (flash) toast[flash.type](flash.message);

@@ -34,25 +34,27 @@ export default function SidebarResponsive({ auth, url, workspaces }) {
                                         Dashboard
                                     </Link>
                                 </li>
-                                <li>
-                                    <Link
-                                        className={cn(
-                                            url.startsWith('/users')
-                                                ? 'bg-blue-500 text-white'
-                                                : 'text-foreground hover:bg-gray-100',
-                                            'group flex gap-x-3 rounded-md p-3 text-sm font-semibold leading-relaxed',
-                                        )}
-                                        href={route('users.index')}
-                                    >
-                                        <PiUsers
+                                {auth.is_admin && (
+                                    <li>
+                                        <Link
                                             className={cn(
-                                                url.startsWith('/users') ? 'text-white' : 'text-foreground',
-                                                'h-6 w-6 shrink-0',
+                                                url.startsWith('/users')
+                                                    ? 'bg-blue-500 text-white'
+                                                    : 'text-foreground hover:bg-gray-100',
+                                                'group flex gap-x-3 rounded-md p-3 text-sm font-semibold leading-relaxed',
                                             )}
-                                        />
-                                        Peoples
-                                    </Link>
-                                </li>
+                                            href={route('users.index')}
+                                        >
+                                            <PiUsers
+                                                className={cn(
+                                                    url.startsWith('/users') ? 'text-white' : 'text-foreground',
+                                                    'h-6 w-6 shrink-0',
+                                                )}
+                                            />
+                                            Peoples
+                                        </Link>
+                                    </li>
+                                )}
                                 <li>
                                     <Link
                                         className={cn(

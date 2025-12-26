@@ -31,7 +31,7 @@ class MemberCardController extends Controller
 
         $card->members()->create([
             'user_id' => $user->id,
-            'role' => 'Member',
+            'role' => $user->id == request()->user()->id ? 'Owner' : 'Member',
         ]);
 
         flashMessage('Member successfully invited!');

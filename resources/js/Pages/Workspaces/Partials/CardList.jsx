@@ -43,7 +43,7 @@ export default function CardList({ card, workspace, handleDeleteCard }) {
             style={style}
             {...attributes}
             {...listeners}
-            className="task relative cursor-grab rounded-xl hover:ring-2 hover:ring-inset hover:ring-blue-500"
+            className="task group relative cursor-grab rounded-xl hover:ring-2 hover:ring-inset hover:ring-blue-500"
         >
             <CardHeader>
                 <div className="flex items-center justify-between">

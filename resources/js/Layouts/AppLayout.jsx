@@ -1,4 +1,4 @@
-import { Avatar, AvatarFallback } from '@/Components/ui/avatar';
+import { Avatar, AvatarFallback, AvatarImage } from '@/Components/ui/avatar';
 import { Toaster } from '@/Components/ui/sonner';
 import { Dialog, Transition } from '@headlessui/react';
 import { Head, Link, usePage } from '@inertiajs/react';
@@ -103,6 +103,7 @@ export default function AppLayout({ children, title }) {
                     <Link href={route('profile.edit')}>
                         <span className="sr-only">Your profile</span>
                         <Avatar>
+                            <AvatarImage src={auth.avatar} />
                             <AvatarFallback>{auth.name.slice(0, 1)}</AvatarFallback>
                         </Avatar>
                     </Link>

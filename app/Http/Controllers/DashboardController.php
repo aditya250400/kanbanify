@@ -21,11 +21,15 @@ class DashboardController extends Controller
             ->whereHasMorph(
                 'memberable',
                 Card::class,
-                fn($query) => $query->where('status', CardStatus::TODO->value)
+                fn($query) => $query->where('status', CardStatus::INPROGRESS->value)
             )
             ->latest()
             ->limit(10)
             ->get();
+
+
+
+
 
         return inertia('Dashboard', [
             'page_settings' => [
@@ -43,6 +47,10 @@ class DashboardController extends Controller
                 'tasks' => Member::query()
                     ->where('members.user_id', request()->user()->id)
                     ->whereHasMorph('memberable', Card::class)
+                    ->count(),
+                'inProgress' => Member::query()
+                    ->where('members.user_id', request()->user()->id)
+                    ->whereHasMorph('memberable', Card::class, fn($query) => $query->where('status', CardStatus::INPROGRESS->value))
                     ->count(),
                 'done' => Member::query()
                     ->where('members.user_id', request()->user()->id)

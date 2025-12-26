@@ -59,32 +59,26 @@ export default function UpdateProfileInformation({ mustVerifyEmail, status, clas
             </CardHeader>
 
             <CardContent className="flex flex-col gap-x-14 lg:flex-row lg:items-center">
-                {user.avatar && (
-                    <div>
-                        <div className="relative w-[200px] overflow-hidden rounded-lg">
-                            <img className="full h-full object-cover" src={user.avatar} alt={user.name} />
-                            <Button
-                                type="button"
-                                variant="default"
-                                className="absolute bottom-0 w-[200px] rounded-t-none"
-                            >
-                                <label className="w-full hover:cursor-pointer" htmlFor="avatar">
-                                    Update
-                                </label>
-                            </Button>
+                <div>
+                    <div className="relative w-[200px] overflow-hidden rounded-lg">
+                        <img className="full h-full object-cover" src={user.avatar} alt={user.name} />
+                        <Button type="button" variant="default" className="absolute bottom-0 w-[200px] rounded-t-none">
+                            <label className="w-full hover:cursor-pointer" htmlFor="avatar">
+                                Update
+                            </label>
+                        </Button>
 
-                            <input
-                                hidden
-                                onChange={onHandleChangeAvatar}
-                                name="avatar"
-                                id="avatar"
-                                type="file"
-                                accept="image/*"
-                            />
-                        </div>
-                        {errorAvatar && <InputError className="mt-2" message={errorAvatar} />}
+                        <input
+                            hidden
+                            onChange={onHandleChangeAvatar}
+                            name="avatar"
+                            id="avatar"
+                            type="file"
+                            accept="image/*"
+                        />
                     </div>
-                )}
+                    {errorAvatar && <InputError className="mt-2" message={errorAvatar} />}
+                </div>
                 <form onSubmit={onHandleSubmit} className="mt-6 flex-1 space-y-6">
                     <div>
                         <Label htmlFor="name">Nama</Label>

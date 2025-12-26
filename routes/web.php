@@ -27,6 +27,7 @@ Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::put('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::put('/profile/{user}/avatar', [ProfileController::class, 'updateAvatar'])->name('profile.avatar');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
 
@@ -85,7 +86,7 @@ Route::middleware('auth')->group(function () {
         Route::put('users/edit/{user:email}', 'update')->name('users.update');
         Route::get('users/edit/{user:email}', 'edit')->name('users.edit');
         Route::delete('users/destroy/{user:email}', 'destroy')->name('users.destroy');
-    });
+    })->middleware(['role:admin']);
 });
 
 

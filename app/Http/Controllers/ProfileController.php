@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\AvatarRequest;
 use App\Http\Requests\ProfileUpdateRequest;
+use App\Models\User;
+use App\Traits\HasFile;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -10,12 +13,16 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 use Inertia\Inertia;
 use Inertia\Response;
+use Throwable;
 
 class ProfileController extends Controller
 {
     /**
      * Display the user's profile form.
      */
+
+    use HasFile;
+
     public function edit(Request $request): Response
     {
         return Inertia::render('Profile/Edit', [
@@ -26,6 +33,16 @@ class ProfileController extends Controller
             'mustVerifyEmail' => $request->user() instanceof MustVerifyEmail,
             'status' => session('status'),
         ]);
+    }
+
+    public function updateAvatar(AvatarRequest $request, User $user)
+    {
+        $user->update([
+            'avatar' => $this->update_file($request, $user, 'avatar', 'users'),
+
+        ]);
+
+        return to_route('profile.edit', [$user]);
     }
 
     /**

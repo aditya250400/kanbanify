@@ -6,7 +6,7 @@ import AppLayout from '@/Layouts/AppLayout';
 import { Link, usePage } from '@inertiajs/react';
 import { BarElement, CategoryScale, Chart as ChartJS, Legend, LinearScale, Title, Tooltip } from 'chart.js';
 import { Bar } from 'react-chartjs-2';
-import { PiBriefcase, PiNewspaperClipping, PiSquaresFour } from 'react-icons/pi';
+import { PiBriefcase, PiNewspaperClipping, PiSquaresFour, PiStackSimple } from 'react-icons/pi';
 
 ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend);
 
@@ -42,7 +42,7 @@ export default function Dashboard({ count, page_settings, productivity_chart, ta
                     <div>
                         <Header title={page_settings.title} subtitle={page_settings.subtitle} />
                         <div>
-                            <dl className="mt-5 grid w-full grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
+                            <dl className="mt-5 grid w-full grid-cols-1 gap-5 sm:grid-cols-2">
                                 <Widget
                                     icon={<PiBriefcase className="h-6 w-6 text-white" />}
                                     title="Workspace"
@@ -54,6 +54,12 @@ export default function Dashboard({ count, page_settings, productivity_chart, ta
                                     title="My Tasks"
                                     count={count.tasks}
                                     bgColor="bg-gradient-to-b from-slate-400 to-slate-600"
+                                />
+                                <Widget
+                                    icon={<PiStackSimple className="h-6 w-6 text-white" />}
+                                    title="In Progress"
+                                    count={count.inProgress}
+                                    bgColor="bg-gradient-to-b from-blue-400 to-blue-600"
                                 />
                                 <Widget
                                     icon={<PiBriefcase className="h-6 w-6 text-white" />}
