@@ -52,31 +52,33 @@ export default function CardList({ card, workspace, handleDeleteCard }) {
                             {card.title}
                         </Link>
                     </CardTitle>
-                    <DropdownMenu>
-                        <DropdownMenuTrigger>
-                            <PiDotsThreeOutlineFill className="size-4" />
-                        </DropdownMenuTrigger>
-                        <DropdownMenuContent align="end" className="w-48">
-                            <DropdownMenuGroup>
-                                <DropdownMenuItem className="hover:cursor-pointer" asChild>
-                                    <Link href={route('cards.edit', [workspace, card])}>Edit</Link>
-                                </DropdownMenuItem>
-                                <ActionDialog
-                                    title="Delete Card"
-                                    description="Are you sure want to delete card?"
-                                    action={() => handleDeleteCard(card.id)}
-                                    trigger={
-                                        <DropdownMenuItem
-                                            onSelect={(e) => e.preventDefault()}
-                                            className="hover:cursor-pointer"
-                                        >
-                                            Delete
-                                        </DropdownMenuItem>
-                                    }
-                                />
-                            </DropdownMenuGroup>
-                        </DropdownMenuContent>
-                    </DropdownMenu>
+                    {card.can.edit_card && card.can.delete_card && (
+                        <DropdownMenu>
+                            <DropdownMenuTrigger>
+                                <PiDotsThreeOutlineFill className="size-4" />
+                            </DropdownMenuTrigger>
+                            <DropdownMenuContent align="end" className="w-48">
+                                <DropdownMenuGroup>
+                                    <DropdownMenuItem className="hover:cursor-pointer" asChild>
+                                        <Link href={route('cards.edit', [workspace, card])}>Edit</Link>
+                                    </DropdownMenuItem>
+                                    <ActionDialog
+                                        title="Delete Card"
+                                        description="Are you sure want to delete card?"
+                                        action={() => handleDeleteCard(card.id)}
+                                        trigger={
+                                            <DropdownMenuItem
+                                                onSelect={(e) => e.preventDefault()}
+                                                className="hover:cursor-pointer"
+                                            >
+                                                Delete
+                                            </DropdownMenuItem>
+                                        }
+                                    />
+                                </DropdownMenuGroup>
+                            </DropdownMenuContent>
+                        </DropdownMenu>
+                    )}
                 </div>
                 <div>
                     <GetPriorityBadge priority={card.priority} />

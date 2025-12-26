@@ -140,8 +140,6 @@ export default function Show({ workspace, ...props }) {
         handleReorderCard(active, over);
     };
 
-    console.log(workspace);
-
     return (
         <>
             <div>

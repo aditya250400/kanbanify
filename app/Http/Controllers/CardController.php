@@ -13,6 +13,7 @@ use App\Models\Workspace;
 use Doctrine\Inflector\Rules\Word;
 use Illuminate\Http\Request;
 use Illuminate\Queue\Worker;
+use Illuminate\Support\Facades\Gate;
 
 class CardController extends Controller
 {
@@ -106,6 +107,8 @@ class CardController extends Controller
 
     public function update(Workspace $workspace, Card $card, CardRequest $request)
     {
+        Gate::authorize('update_card', $card);
+
         $last_status = $card->status->value;
 
         $card->update([
@@ -142,6 +145,7 @@ class CardController extends Controller
 
     public function destroy(Workspace $workspace, Card $card)
     {
+        Gate::authorize('update_card', $card);
         $last_status = $card->status->value;
         $card->delete();
 
