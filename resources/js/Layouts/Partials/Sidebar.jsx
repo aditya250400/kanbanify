@@ -4,7 +4,6 @@ import { Link } from '@inertiajs/react';
 import { PiHouse, PiLockKeyOpen, PiPlus, PiSquaresFour, PiUsers } from 'react-icons/pi';
 
 export default function Sidebar({ auth, url, workspaces }) {
-    console.log(workspaces);
     return (
         <>
             <nav className="flex flex-1 flex-col">
@@ -18,7 +17,7 @@ export default function Sidebar({ auth, url, workspaces }) {
                                     className={cn(
                                         url.startsWith('/dashboard')
                                             ? 'bg-blue-500 text-white'
-                                            : 'text-foeground hover:bg-gray-100',
+                                            : 'text-foreground hover:bg-gray-100 dark:hover:bg-blue-500',
                                         'group flex gap-x-3 rounded-md p-3 text-sm font-semibold leading-relaxed',
                                     )}
                                 >
@@ -38,7 +37,7 @@ export default function Sidebar({ auth, url, workspaces }) {
                                         className={cn(
                                             url.startsWith('/users')
                                                 ? 'bg-blue-500 text-white'
-                                                : 'text-foeground hover:bg-gray-100',
+                                                : 'text-foreground hover:bg-gray-100 dark:hover:bg-blue-500',
                                             'group flex gap-x-3 rounded-md p-3 text-sm font-semibold leading-relaxed',
                                         )}
                                     >
@@ -58,7 +57,7 @@ export default function Sidebar({ auth, url, workspaces }) {
                                     className={cn(
                                         url.startsWith('/my-tasks')
                                             ? 'bg-blue-500 text-white'
-                                            : 'text-foeground hover:bg-gray-100',
+                                            : 'text-foreground hover:bg-gray-100 dark:hover:bg-blue-500',
                                         'group flex gap-x-3 rounded-md p-3 text-sm font-semibold leading-relaxed',
                                     )}
                                 >
@@ -79,7 +78,7 @@ export default function Sidebar({ auth, url, workspaces }) {
                                     className={cn(
                                         url.startsWith('/logout')
                                             ? 'bg-blue-500 text-white'
-                                            : 'text-foeground hover:bg-gray-100',
+                                            : 'text-foreground hover:bg-gray-100 dark:hover:bg-blue-500',
                                         'group flex w-full gap-x-3 rounded-md p-3 text-sm font-semibold leading-relaxed',
                                     )}
                                 >
@@ -112,7 +111,7 @@ export default function Sidebar({ auth, url, workspaces }) {
                                         className={cn(
                                             url.startsWith(`/workspaces/p/${workspace.memberable.slug}`)
                                                 ? 'bg-blue-500 text-white'
-                                                : 'text-foreground hover:bg-gray-100',
+                                                : 'text-foreground hover:bg-gray-100 dark:hover:bg-blue-500',
                                             'group flex gap-x-3 rounded-md p-3 text-sm font-semibold leading-relaxed',
                                         )}
                                     >
@@ -120,7 +119,7 @@ export default function Sidebar({ auth, url, workspaces }) {
                                             className={cn(
                                                 url.startsWith(`/workspaces/p/${workspace.memberable.slug}`)
                                                     ? 'border-white bg-blue-500 text-white'
-                                                    : 'border-foreground text-foreground hover:bg-gray-100',
+                                                    : 'border-foreground text-foreground hover:bg-gray-100 dark:hover:bg-blue-500',
                                                 'flex h-6 w-6 shrink-0 items-center justify-center rounded-lg border text-[0.625rem] font-medium',
                                             )}
                                         >
@@ -135,7 +134,7 @@ export default function Sidebar({ auth, url, workspaces }) {
                     <li className="-mx-6 mt-auto">
                         {/* profile */}
                         <Link
-                            className="flex items-center gap-x-4 px-6 py-3 text-sm font-semibold leading-relaxed text-foreground hover:bg-gray-100"
+                            className="flex items-center gap-x-4 px-6 py-3 text-sm font-semibold leading-relaxed text-foreground hover:bg-gray-100 dark:hover:bg-blue-500"
                             href={route('profile.edit')}
                         >
                             <Avatar>

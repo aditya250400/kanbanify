@@ -81,7 +81,7 @@ export default function Index({ page_settings, ...props }) {
                             <div className="inline-block w-full py-2 align-middle sm:px-2">
                                 <table className="w-full text-left">
                                     <thead>
-                                        <tr className="bg-gray-50">
+                                        <tr className="bg-gray-50 dark:bg-gray-600">
                                             <th
                                                 className="px-2 py-3.5 text-left text-sm font-semibold text-foreground"
                                                 scope="col"
@@ -106,7 +106,7 @@ export default function Index({ page_settings, ...props }) {
                                                     variant="ghost"
                                                     className="group inline-flex"
                                                 >
-                                                    email
+                                                    Email
                                                     <span className="ml-2 flex-none rounded text-foreground">
                                                         <PiArrowsDownUp className="h-5 w-5" />
                                                     </span>

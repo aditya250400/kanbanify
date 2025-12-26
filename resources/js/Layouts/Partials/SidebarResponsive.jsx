@@ -5,7 +5,7 @@ import { PiHouse, PiLockKeyOpen, PiPlus, PiSquaresFour, PiUsers } from 'react-ic
 export default function SidebarResponsive({ auth, url, workspaces }) {
     return (
         <>
-            <div className="scroll-bar flex grow flex-col gap-y-5 overflow-y-auto bg-white px-6 pb-2 dark:bg-gray-900">
+            <div className="scroll-bar flex grow flex-col gap-y-5 overflow-y-auto bg-white px-6 pb-2 dark:bg-gray-800">
                 <div className="flex h-16 shrink-0 items-center space-x-1.5">
                     <Link href="/" className="-m-1.5 p-1.5 text-2xl font-black leading-relaxed tracking-tighter">
                         Kanbanify<span className="text-blue-500">.</span>
@@ -20,7 +20,7 @@ export default function SidebarResponsive({ auth, url, workspaces }) {
                                         className={cn(
                                             url.startsWith('/dashboard')
                                                 ? 'bg-blue-500 text-white'
-                                                : 'text-foreground hover:bg-gray-100',
+                                                : 'text-foreground hover:bg-gray-100 dark:hover:bg-blue-500',
                                             'group flex gap-x-3 rounded-md p-3 text-sm font-semibold leading-relaxed',
                                         )}
                                         href={route('dashboard')}
@@ -40,7 +40,7 @@ export default function SidebarResponsive({ auth, url, workspaces }) {
                                             className={cn(
                                                 url.startsWith('/users')
                                                     ? 'bg-blue-500 text-white'
-                                                    : 'text-foreground hover:bg-gray-100',
+                                                    : 'text-foreground hover:bg-gray-100 dark:hover:bg-blue-500',
                                                 'group flex gap-x-3 rounded-md p-3 text-sm font-semibold leading-relaxed',
                                             )}
                                             href={route('users.index')}
@@ -60,7 +60,7 @@ export default function SidebarResponsive({ auth, url, workspaces }) {
                                         className={cn(
                                             url.startsWith('/my-tasks')
                                                 ? 'bg-blue-500 text-white'
-                                                : 'text-foreground hover:bg-gray-100',
+                                                : 'text-foreground hover:bg-gray-100 dark:hover:bg-blue-500',
                                             'group flex gap-x-3 rounded-md p-3 text-sm font-semibold leading-relaxed',
                                         )}
                                         href={route('mytasks.index')}
@@ -79,7 +79,7 @@ export default function SidebarResponsive({ auth, url, workspaces }) {
                                         className={cn(
                                             url.startsWith('/logout')
                                                 ? 'bg-blue-500 text-white'
-                                                : 'text-foreground hover:bg-gray-100',
+                                                : 'text-foreground hover:bg-gray-100 dark:hover:bg-blue-500',
                                             'group flex w-full gap-x-3 rounded-md p-3 text-sm font-semibold leading-relaxed',
                                         )}
                                         href={route('logout')}
@@ -116,7 +116,7 @@ export default function SidebarResponsive({ auth, url, workspaces }) {
                                             className={cn(
                                                 url.startsWith(`/workspaces/p/${workspace.memberable.slug}`)
                                                     ? 'bg-blue-500 text-white'
-                                                    : 'text-foreground hover:bg-gray-100',
+                                                    : 'text-foreground hover:bg-gray-100 dark:hover:bg-blue-500',
                                                 'group flex gap-x-3 rounded-md p-3 text-sm font-semibold leading-relaxed',
                                             )}
                                         >
@@ -124,7 +124,7 @@ export default function SidebarResponsive({ auth, url, workspaces }) {
                                                 className={cn(
                                                     url.startsWith(`/workspaces/p/${workspace.memberable.slug}`)
                                                         ? 'border-white bg-blue-500 text-white'
-                                                        : 'border-foreground text-foreground hover:bg-gray-100',
+                                                        : 'border-foreground text-foreground hover:bg-gray-100 dark:hover:bg-blue-500',
                                                     'flex h-6 w-6 shrink-0 items-center justify-center rounded-lg border text-[0.625rem] font-medium',
                                                 )}
                                             >
