@@ -7,6 +7,7 @@ use App\Http\Controllers\MemberCardController;
 use App\Http\Controllers\MyTaskController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\TaskController;
+use App\Http\Controllers\UserController;
 use App\Http\Controllers\WorkspaceController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
@@ -75,6 +76,16 @@ Route::middleware('auth')->group(function () {
 
     // my task
     Route::get('my-tasks', MyTaskController::class)->name('mytasks.index');
+
+    // users
+    Route::controller(UserController::class)->group(function () {
+        Route::get('users', 'index')->name('users.index');
+        Route::get('users/create', 'create')->name('users.create');
+        Route::post('users/create', 'store')->name('users.store');
+        Route::get('users/edit/{user:email}', 'edit')->name('users.edit');
+        Route::put('users/edit/{user:email}', 'update')->name('users.update');
+        Route::delete('users/destroy/{user:email}', 'destroy')->name('users.destroy');
+    });
 });
 
 

@@ -42,7 +42,7 @@ export default function SidebarResponsive({ auth, url, workspaces }) {
                                                 : 'text-foreground hover:bg-gray-100',
                                             'group flex gap-x-3 rounded-md p-3 text-sm font-semibold leading-relaxed',
                                         )}
-                                        href="#"
+                                        href={route('users.index')}
                                     >
                                         <PiUsers
                                             className={cn(
