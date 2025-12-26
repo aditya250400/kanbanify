@@ -133,7 +133,7 @@ export default function Sidebar({ auth, url, workspaces }) {
                         {/* profile */}
                         <Link
                             className="flex items-center gap-x-4 px-6 py-3 text-sm font-semibold leading-relaxed text-foreground hover:bg-gray-100"
-                            href={'#'}
+                            href={route('profile.edit')}
                         >
                             <Avatar>
                                 <AvatarFallback>{auth.name.slice(0, 1)}</AvatarFallback>

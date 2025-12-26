@@ -100,7 +100,7 @@ export default function AppLayout({ children, title }) {
                     <div className="flex-1 text-sm font-semibold leading-relaxed tracking-tighter text-foreground">
                         {title}
                     </div>
-                    <Link href="#">
+                    <Link href={route('profile.edit')}>
                         <span className="sr-only">Your profile</span>
                         <Avatar>
                             <AvatarFallback>{auth.name.slice(0, 1)}</AvatarFallback>
