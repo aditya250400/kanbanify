@@ -82,8 +82,8 @@ Route::middleware('auth')->group(function () {
         Route::get('users', 'index')->name('users.index');
         Route::get('users/create', 'create')->name('users.create');
         Route::post('users/create', 'store')->name('users.store');
-        Route::get('users/edit/{user:email}', 'edit')->name('users.edit');
         Route::put('users/edit/{user:email}', 'update')->name('users.update');
+        Route::get('users/edit/{user:email}', 'edit')->name('users.edit');
         Route::delete('users/destroy/{user:email}', 'destroy')->name('users.destroy');
     });
 });

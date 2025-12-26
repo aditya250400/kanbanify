@@ -73,4 +73,33 @@ class UserController extends Controller
 
         return to_route('users.index');
     }
+
+
+    public function edit(User $user)
+    {
+        return inertia('Users/Edit', [
+            'page_settings' => [
+                'title' => 'Edit Peoples',
+                'subtitle' => 'Fill this form to save the user',
+                'method' => 'PUT',
+                'action' => route('users.update', $user)
+            ],
+            'user' => $user
+        ]);
+    }
+
+
+    public function update(UserRequest $request, User $user)
+    {
+        $user->update([
+            'name' => $request->name,
+            'email' => $request->email,
+            'password' => $request->password ? Hash::make($request->password) : $user->password,
+            'avatar' => $this->update_file($request, $user, 'avatar', 'users')
+        ]);
+
+        flashMessage('User saved successfully');
+
+        return to_route('users.index');
+    }
 }
