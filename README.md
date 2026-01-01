@@ -1,61 +1,60 @@
 # 🧩 Kanbanify
 
-**Kanbanify** adalah project studi kasus dalam membangun sebuah website modern berbasis **Kanban Board** menggunakan teknologi terkini yaitu **Laravel 11**, **ReactJS**, dan **InertiaJS**.
+**Kanbanify** is a case study project focused on building a modern **Kanban Board–based** web application using up-to-date technologies such as **Laravel 11**, **ReactJS**, and **InertiaJS**.
 
-Proyek ini dirancang untuk pembuatan aplikasi **Single Page Application (SPA)** dengan pendekatan monolitik — tanpa perlu memisahkan antara frontend dan backend.
-
----
-
-## 🚀 Teknologi yang Digunakan
-
-- **Laravel 11** – Sebagai backend utama & routing
-- **InertiaJS** – Menjembatani Laravel dengan ReactJS (SPA tanpa API layer)
-- **ReactJS** – Untuk membangun komponen UI yang reaktif
-- **TailwindCSS** – Utility-first CSS framework untuk styling cepat
-- **ShadCN UI** – Komponen UI modern berbasis TailwindCSS + Radix UI
-- **DnD Kit** – Library modern untuk fitur drag-and-drop
-- **Laravel Breeze (Inertia stack)** – Untuk autentikasi dan scaffolding awal
+This project is designed to develop a **Single Page Application (SPA)** using a monolithic approach — without separating the frontend and backend.
 
 ---
 
-## 🎯 Fitur Utama
+## 🚀 Technologies Used
 
-- ✅ Autentikasi pengguna (login/register) menggunakan Laravel Breeze
-- ✅ Kanban board interaktif dengan drag & drop (DnD Kit)
-- ✅ Komponen UI modern dengan **ShadCN UI**
-- ✅ Layout modular dan reusable
-- ✅ SPA full via InertiaJS (tanpa perlu REST API)
-- ✅ Pembuatan datatable custom:
+- **Laravel 11** – Main backend framework & routing
+- **InertiaJS** – Bridges Laravel and ReactJS (SPA without an API layer)
+- **ReactJS** – For building reactive UI components
+- **TailwindCSS** – Utility-first CSS framework for rapid styling
+- **ShadCN UI** – Modern UI components built on TailwindCSS + Radix UI
+- **DnD Kit** – Modern library for drag-and-drop functionality
+- **Laravel Breeze (Inertia stack)** – Authentication and initial scaffolding
+
+---
+
+## 🎯 Key Features
+
+- ✅ User authentication (login/register) using Laravel Breeze
+- ✅ Interactive Kanban board with drag & drop (DnD Kit)
+- ✅ Modern UI components powered by **ShadCN UI**
+- ✅ Modular and reusable layout structure
+- ✅ Full SPA experience via InertiaJS (no REST API required)
+- ✅ Custom datatable implementation:
     - Pagination
     - Searching
     - Sorting
-    - Fitur lanjutan lainnya
+    - Other advanced features
 
 ---
 
-## 📦 Cara Install
+## 📦 Installation Guide
 
 ```bash
-# 1. Clone repository ini
+# 1. Clone this repository
 git clone https://github.com/aditya250400/kanbanify.git
 
-# 2. Masuk ke direktori project
+# 2. Navigate into the project directory
 cd kanbanify
 
-# 3. Install dependency backend
+# 3. Install backend dependencies
 composer install
 
-# 4. Install dependency frontend
+# 4. Install frontend dependencies
 npm install
 
-# 5. Setup environment dan database
+# 5. Set up environment and database
 cp .env.example .env
 php artisan key:generate
 
-# 6. Jalankan migrasi
+# 6. Run database migrations
 php artisan migrate
 
-# 7. Jalankan dev server
+# 7. Start the development servers
 npm run dev
 php artisan serve
-```
